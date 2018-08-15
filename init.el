@@ -7,12 +7,21 @@
 (add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/"))
 
 (set-language-environment "Korean")
+(setq default-input-method "korean-hangul390")
+(setq default-korean-keyboard "390")
+(global-set-key (kbd "<kana>") 'toggle-input-method)
+(global-set-key (kbd "<S-kana>") 'toggle-input-method)
+
 (prefer-coding-system 'utf-8)
 
 (add-to-list 'default-frame-alist '(height . 60))
 (add-to-list 'default-frame-alist '(width . 200))
 (set-frame-position (selected-frame) 80 20)
 
+;; font setting
+(set-face-font 'default "Bitstream Vera Sans Mono")
+(set-face-attribute 'default nil :height 115)
+(set-fontset-font t 'hangul (font-spec :name "NanumGothicCoding" :size 20))
 
 ;; backup file setting
 (setq backup-directory-alist '(("." . "~/.emacs.d/tmp/backup"))
@@ -29,7 +38,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-	(org-wiki jade-mode gradle-mode eyebrowse groovy-mode helm-descbinds meghanada xref-js2 wgrep undo-tree tern tern-auto-complete tern-context-coloring org-bullets stylus-mode js2-refactor js2-mode markdown-mode web-mode prodigy nodejs-repl neotree which-key iedit multi-term counsel-projectile company magit projectile counsel zenburn-theme avy swiper))))
+	(monokai-theme org-wiki jade-mode gradle-mode eyebrowse groovy-mode helm-descbinds meghanada xref-js2 wgrep undo-tree tern tern-auto-complete tern-context-coloring org-bullets stylus-mode js2-refactor js2-mode markdown-mode web-mode prodigy nodejs-repl neotree which-key iedit multi-term counsel-projectile company magit projectile counsel avy swiper))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -37,7 +46,7 @@
  ;; If there is more than one, they won't work right.
  )
 
-(load-theme 'zenburn t)
+(load-theme 'monokai t)
 
 ;; basic setting
 (setq-default tab-width 4)
@@ -95,7 +104,7 @@
 
 ;; org-wiki mode setting
 (require 'org-wiki)
-(setq org-wiki-location-list '("/mnt/documents/orgwiki/it"))
+(setq org-wiki-location-list '("/mnt/document/org-wiki/it"))
 (setq org-wiki-location (car org-wiki-location-list))
 
 (defalias 'w-h #'org-wiki-helm)
@@ -133,7 +142,7 @@
 (global-set-key (kbd "C-h b") 'helm-descbinds)
 
 ;; js2-mode setting
-(add-to-list 'auto-mode-alist '("\\.js\\" . js2-mode))
+;;(add-to-list 'auto-mode-alist '("\\.js\\" . js2-mode))
 (add-hook 'js2-mode-hook (lambda () (tern-mode t)))
 (add-hook 'js2-mode-hook (lambda () (auto-complete-mode)))
 (eval-after-load 'tern
@@ -141,3 +150,12 @@
 	(require 'tern-auto-complete)
 	(setq tern-ac-on-dot t)
 	(tern-ac-setup)))
+
+;; org-mode setting
+;;(setq org-src-fontify-natively t)
+;;(org-block-begin-line ((t (:underline "#A7A6AA" :foreground "#008ED1" :background "#EAEAFF"))))
+;;(org-block-background ((t (:background "#FFFFEA"))))
+;;(org-block-end-line ((t (:overline "#A7A6AA" :foreground "#008ED1" :background "#EAEAFF"))))
+
+;; markdown-mode setting
+
