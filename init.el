@@ -38,7 +38,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-	(monokai-theme org-wiki jade-mode gradle-mode eyebrowse groovy-mode helm-descbinds meghanada xref-js2 wgrep undo-tree tern tern-auto-complete tern-context-coloring org-bullets stylus-mode js2-refactor js2-mode markdown-mode web-mode prodigy nodejs-repl neotree which-key iedit multi-term counsel-projectile company magit projectile counsel avy swiper))))
+	(edbi monokai-theme org-wiki jade-mode gradle-mode eyebrowse groovy-mode helm-descbinds meghanada xref-js2 wgrep undo-tree tern tern-auto-complete tern-context-coloring org-bullets stylus-mode js2-refactor js2-mode markdown-mode web-mode prodigy nodejs-repl neotree which-key iedit multi-term counsel-projectile company magit projectile counsel avy swiper))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -127,7 +127,8 @@
 			;; meghanada-mode on
 			(meghanada-mode t)
 			(flycheck-mode +1)
-			(setq c-basic-offset 2)
+			(setq tab-width 4)
+			(setq c-basic-offset 4)
 			;; use code format
 			(add-hook 'before-save-hook 'meghanada-code-beautify-before-save)))
 
