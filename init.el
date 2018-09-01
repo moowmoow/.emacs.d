@@ -1,11 +1,27 @@
-(package-initialize)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+	(session ido-vertical-mode edbi monokai-theme org-wiki jade-mode gradle-mode eyebrowse groovy-mode helm-descbinds meghanada xref-js2 wgrep undo-tree tern tern-auto-complete tern-context-coloring org-bullets stylus-mode js2-refactor js2-mode markdown-mode web-mode prodigy nodejs-repl neotree which-key iedit multi-term counsel-projectile company magit projectile counsel avy swiper))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
 
 ;; package setting
+(package-initialize)
+
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/"))
 (add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/"))
 
+;; lang and input setting 
 (set-language-environment "Korean")
 (setq default-input-method "korean-hangul390")
 (setq default-korean-keyboard "390")
@@ -14,6 +30,7 @@
 
 (prefer-coding-system 'utf-8)
 
+;; frame setting
 (add-to-list 'default-frame-alist '(height . 60))
 (add-to-list 'default-frame-alist '(width . 200))
 (set-frame-position (selected-frame) 80 20)
@@ -23,6 +40,43 @@
 (set-face-attribute 'default nil :height 115)
 (set-fontset-font t 'hangul (font-spec :name "NanumGothicCoding" :size 20))
 
+(global-set-key (kbd "C-+") 'text-scale-increase)
+(global-set-key (kbd "C--") 'text-scale-decrease)
+
+;; basic setting
+(setq frame-title-format
+	  '((:eval (if (buffer-file-name)
+				   (abbreviate-file-name (buffer-file-name))
+				 "%b"))))
+
+(setq-default tab-width 4)
+(global-hl-line-mode t)
+(global-linum-mode t)
+(column-number-mode t)
+(delete-selection-mode t)
+(show-paren-mode t)
+(electric-pair-mode t)
+(setq large-file-warning-threshold 100000000)
+
+;; Recently Visited Files
+(setq recentf-max-saved-items 200)
+(setq recentf-max-menu-items 15)
+(recentf-mode 1)
+
+(defun recentf-ido-find-file ()
+  "Find a recent file using ido."
+  (interactive)
+  (let ((file (ido-completing-read "Choose recent file: " recentf-list nil t)))
+	(when file
+	  (find-file file))))
+
+(global-set-key (kbd "C-c f") 'recentf-ido-find-file)
+
+;;(desktop-save-mode t)
+
+(setq session-jump-undo-threshold 80)
+(global-set-key (kbd "C-c q") 'session-jump-to-last-change)
+
 ;; backup file setting
 (setq backup-directory-alist '(("." . "~/.emacs.d/tmp/backup"))
   backup-by-copying t    ; Don't delink hardlinks
@@ -31,29 +85,76 @@
   kept-new-versions 20   ; how many of the newest versions to keep
   kept-old-versions 5    ; and how many of the old
 )
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-	(edbi monokai-theme org-wiki jade-mode gradle-mode eyebrowse groovy-mode helm-descbinds meghanada xref-js2 wgrep undo-tree tern tern-auto-complete tern-context-coloring org-bullets stylus-mode js2-refactor js2-mode markdown-mode web-mode prodigy nodejs-repl neotree which-key iedit multi-term counsel-projectile company magit projectile counsel avy swiper))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
 
+;; theme setting
 (load-theme 'monokai t)
 
-;; basic setting
-(setq-default tab-width 4)
-(global-hl-line-mode 1)
-(global-linum-mode 1)
-(delete-selection-mode t)
-;;(desktop-save-mode t)
+;; custom function
+;; Delete File and Buffer
+(defun delete-file-and-buffer ()
+  "Kill the current buffer and deletes the file it is visiting."
+  (interactive)
+  (let ((filename (buffer-file-name)))
+	(when filename
+	  (if (vc-backend filename)
+		  (vc-delete-file filename)
+		(progn
+		  (delete-file filename)
+		  (message "deleted file %s" filename)
+		  (kill-buffer))))))
+
+(global-set-key (kbd "C-c D") 'delete-file-and-buffer)
+
+;; Move Current Line Up or Down
+(defun move-line-up ()
+  "Move up the current line."
+  (interactive)
+  (transpose-lines 1)
+  (forward-line -2)
+  (indent-according-to-mode))
+
+(defun move-line-down ()
+  "Move down the current line."
+  (interactive)
+  (forward-line 1)
+  (transpose-lines 1)
+  (forward-line -1)
+  (indent-according-to-mode))
+
+;(global-set-key (kbd "C-M up") 'move-line-up)
+;(global-set-key (kbd "C-M down") 'move-line-down)
+
+;; Rename File and Buffer
+(defun rename-file-and-buffer ()
+  "Rename the current buffer and file it is visiting."
+  (interactive)
+  (let ((filename (buffer-file-name)))
+	(if (not (and filename (file-exists-p filename)))
+		(message "Buffer is not visiting a file!")
+	  (let ((new-name (read-file-name "New name: " filename)))
+		(cond
+		 ((vc-backend filename) (vc-rename-file filename new-name))
+		 (t
+		  (rename-file filename new-name t)
+		  (set-visited-file-name new-name t t)))))))
+
+(global-set-key (kbd "C-c r") 'rename-file-and-buffer)
+
+;; Switch to Previous Buffer
+(defun switch-to-previous-buffer ()
+  "Switch to previously open buffer.
+Repeated invocations toggle between the two most recently open buffers."
+  (interactive)
+  (switch-to-buffer (other-buffer (current-buffer) 1)))
+
+(global-set-key (kbd "C-c b") 'switch-to-previous-buffer)
+
+;; Go to Column
+(defun go-to-column (column)
+  (interactive "ncolumn: ")
+  (move-to-column column t))
+
+(global-set-key (kbd "M-g M-c") 'go-to-column)
 
 ;; projectile mode setting
 (counsel-projectile-mode t)
@@ -160,3 +261,4 @@
 
 ;; markdown-mode setting
 
+(setq org-highlight-latex-and-related '(latex))
