@@ -1,8 +1,8 @@
 tmp/*
-#elpa/archives/
-#elpa/ejc-sql-20180827.1408/.nrepl-port
-#elpa/ejc-sql-20180827.1408/target/
-#elpa/ejc-sql-20180827.1408/ejc-sql/
+elpa/archives/
+elpa/ejc-sql-20180827.1408/.nrepl-port
+elpa/ejc-sql-20180827.1408/target/
+elpa/ejc-sql-20180827.1408/ejc-sql/
 
 .edbi-ds-history
 ac-comphist.dat
