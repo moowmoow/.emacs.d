@@ -1,11 +1,13 @@
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(cider-lein-parameters "repl :headless :host localhost")
  '(package-selected-packages
    (quote
-	(session ido-vertical-mode edbi monokai-theme org-wiki jade-mode gradle-mode eyebrowse groovy-mode helm-descbinds meghanada xref-js2 wgrep undo-tree tern tern-auto-complete tern-context-coloring org-bullets stylus-mode js2-refactor js2-mode markdown-mode web-mode prodigy nodejs-repl neotree which-key iedit multi-term counsel-projectile company magit projectile counsel avy swiper))))
+	(plantuml-mode ejc-sql session ido-vertical-mode edbi monokai-theme org-wiki jade-mode gradle-mode eyebrowse groovy-mode helm-descbinds meghanada xref-js2 wgrep undo-tree tern tern-auto-complete tern-context-coloring org-bullets stylus-mode js2-refactor js2-mode markdown-mode web-mode prodigy nodejs-repl neotree which-key iedit multi-term counsel-projectile company magit projectile counsel avy swiper))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -57,6 +59,7 @@
 (show-paren-mode t)
 (electric-pair-mode t)
 (setq large-file-warning-threshold 100000000)
+(defalias 'list-buffers 'ibuffer)
 
 ;; Recently Visited Files
 (setq recentf-max-saved-items 200)
@@ -262,3 +265,44 @@ Repeated invocations toggle between the two most recently open buffers."
 ;; markdown-mode setting
 
 (setq org-highlight-latex-and-related '(latex))
+
+(require 'ejc-sql)
+(setq cider-lein-parameters "repl :headless :host localhost")
+
+;; org-babel setting
+(with-eval-after-load 'org
+(org-babel-do-load-languages 'org-babel-load-languages '((ruby . t)
+(plantuml . t)
+)))
+
+;; plant-uml setting
+(setq plantuml-jar-path (expand-file-name "~/.emacs.d/plantuml/plantuml.1.2018.11.jar"))
+(setq org-plantuml-jar-path (expand-file-name "~/.emacs.d/plantuml/plantuml.1.2018.11.jar"))
+(setq org-confirm-babel-evalute nil)
+(add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
+(add-to-list 'auto-mode-alist '("\\.uml\\'" . plantuml-mode))
+(add-hook 'org-babel-after-execute-hook
+		  (lambda ()
+			(when org-inline-image-overlays
+			  (org-redisplay-inline-images))))
+
+;; web-mode setting
+(setq web-mode-markup-indent-offset 2)
+(setq web-mode-css-indent-offset 2)
+(setq web-mode-code-indent-offset 2)
+(setq web-mode-style-padding 1)
+(setq web-mode-script-padding 1)
+(setq web-mode-block-padding 0)
+
+;;(add-to-list 'web-mode-indentation-params '"lineup-args" . nil))
+;;(add-to-list 'web-mode-indentation-params '"lineup-calls" . nil))
+;;(add-to-list 'web-mode-indentation-params '"lineup-concats" . nil))
+;;(add-to-list 'web-mode-indentation-params '"lineup-ternary" . nil))
+
+(add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))

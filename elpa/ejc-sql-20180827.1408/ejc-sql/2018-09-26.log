@@ -1,0 +1,566 @@
+-- -*- mode: sql; -*-
+-- Local Variables:
+-- eval: (ejc-sql-mode)
+-- End:
+-------------------------------------------------- 2018.09.26 07:03:39.185 --
+select *
+  from news
+
+-------------------------------------------------- 2018.09.26 07:04:13.18 --
+select *
+  from attachments
+
+-------------------------------------------------- 2018.09.26 07:05:03.608 --
+select id
+     , container_id
+  from attachments
+
+-------------------------------------------------- 2018.09.26 07:05:09.109 --
+select id
+     , container_id
+	 , container_type
+  from attachments
+
+-------------------------------------------------- 2018.09.26 07:05:15.299 --
+select id
+     , container_id
+	 , container_type
+	 , filename
+  from attachments
+
+-------------------------------------------------- 2018.09.26 07:05:29.576 --
+select id
+     , container_id
+	 , container_type
+	 , filename
+	 , disk_directory
+  from attachments
+
+-------------------------------------------------- 2018.09.26 07:05:32.704 --
+select id
+     , container_id
+	 , container_type
+	 , filename
+	 , disk_directory
+  from attachments
+
+-------------------------------------------------- 2018.09.26 07:05:33.628 --
+select id
+     , container_id
+	 , container_type
+	 , filename
+	 , disk_directory
+  from attachments
+
+-------------------------------------------------- 2018.09.26 07:05:34.455 --
+select id
+     , container_id
+	 , container_type
+	 , filename
+	 , disk_directory
+  from attachments
+
+-------------------------------------------------- 2018.09.26 07:05:35.232 --
+select id
+     , container_id
+	 , container_type
+	 , filename
+	 , disk_directory
+  from attachments
+
+-------------------------------------------------- 2018.09.26 07:05:36.0 --
+select id
+     , container_id
+	 , container_type
+	 , filename
+	 , disk_directory
+  from attachments
+
+-------------------------------------------------- 2018.09.26 07:05:36.747 --
+select id
+     , container_id
+	 , container_type
+	 , filename
+	 , disk_directory
+  from attachments
+
+-------------------------------------------------- 2018.09.26 07:05:38.340 --
+select id
+     , container_id
+	 , container_type
+	 , filename
+	 , disk_directory
+  from attachments
+
+-------------------------------------------------- 2018.09.26 07:05:39.479 --
+select id
+     , container_id
+	 , container_type
+	 , filename
+	 , disk_directory
+  from attachments
+
+-------------------------------------------------- 2018.09.26 07:06:04.410 --
+SELECT s.schema_owner, s.schema_name, t.table_name 
+FROM information_schema.schemata AS s,             
+     information_schema.tables AS t                
+WHERE t.table_schema = s.schema_name
+
+-------------------------------------------------- 2018.09.26 07:06:50.90 --
+nil
+
+-------------------------------------------------- 2018.09.26 07:07:04.114 --
+nil
+
+-------------------------------------------------- 2018.09.26 07:07:10.815 --
+nil
+
+-------------------------------------------------- 2018.09.26 07:07:18.59 --
+select id
+     , container_id
+	 , container_type
+	 , filename
+	 , disk_directory
+  from attachments
+
+-------------------------------------------------- 2018.09.26 07:07:23.189 --
+select id
+     , container_id
+	 , container_type
+	 , filename
+	 , disk_directory
+  from attachments
+;
+
+-------------------------------------------------- 2018.09.26 07:07:50.789 --
+select id
+     , container_id
+	 , container_type
+	 , filename
+	 , disk_directory
+  from attachments
+;
+
+select id
+     , project_id
+  from news
+  ;
+
+-------------------------------------------------- 2018.09.26 07:07:52.604 --
+select id
+     , container_id
+	 , container_type
+	 , filename
+	 , disk_directory
+  from attachments
+;
+
+select id
+     , project_id
+  from news
+  ;
+
+-------------------------------------------------- 2018.09.26 07:07:53.551 --
+select id
+     , container_id
+	 , container_type
+	 , filename
+	 , disk_directory
+  from attachments
+;
+
+select id
+     , project_id
+  from news
+  ;
+
+-------------------------------------------------- 2018.09.26 07:07:54.515 --
+select id
+     , container_id
+	 , container_type
+	 , filename
+	 , disk_directory
+  from attachments
+;
+
+select id
+     , project_id
+  from news
+  ;
+
+-------------------------------------------------- 2018.09.26 07:07:56.98 --
+select id
+     , container_id
+	 , container_type
+	 , filename
+	 , disk_directory
+  from attachments
+;
+
+select id
+     , project_id
+  from news
+  ;
+
+-------------------------------------------------- 2018.09.26 07:07:57.482 --
+select id
+     , container_id
+	 , container_type
+	 , filename
+	 , disk_directory
+  from attachments
+;
+
+select id
+     , project_id
+  from news
+  ;
+
+-------------------------------------------------- 2018.09.26 07:07:58.376 --
+select id
+     , container_id
+	 , container_type
+	 , filename
+	 , disk_directory
+  from attachments
+;
+
+select id
+     , project_id
+  from news
+  ;
+
+-------------------------------------------------- 2018.09.26 07:07:59.352 --
+select id
+     , container_id
+	 , container_type
+	 , filename
+	 , disk_directory
+  from attachments
+;
+
+select id
+     , project_id
+  from news
+  ;
+
+-------------------------------------------------- 2018.09.26 07:08:00.613 --
+select id
+     , container_id
+	 , container_type
+	 , filename
+	 , disk_directory
+  from attachments
+;
+
+select id
+     , project_id
+  from news
+  ;
+
+-------------------------------------------------- 2018.09.26 07:08:01.943 --
+select id
+     , container_id
+	 , container_type
+	 , filename
+	 , disk_directory
+  from attachments
+;
+
+select id
+     , project_id
+  from news
+  ;
+
+-------------------------------------------------- 2018.09.26 07:08:04.93 --
+select id
+     , container_id
+	 , container_type
+	 , filename
+	 , disk_directory
+  from attachments
+;
+
+select id
+     , project_id
+  from news
+  ;
+
+-------------------------------------------------- 2018.09.26 07:08:08.683 --
+select id
+     , container_id
+	 , container_type
+	 , filename
+	 , disk_directory
+  from attachments
+;
+
+select id
+     , project_id
+  from news
+  ;
+
+-------------------------------------------------- 2018.09.26 07:08:09.505 --
+select id
+     , container_id
+	 , container_type
+	 , filename
+	 , disk_directory
+  from attachments
+;
+
+select id
+     , project_id
+  from news
+  ;
+
+-------------------------------------------------- 2018.09.26 07:08:10.228 --
+select id
+     , container_id
+	 , container_type
+	 , filename
+	 , disk_directory
+  from attachments
+;
+
+select id
+     , project_id
+  from news
+  ;
+
+-------------------------------------------------- 2018.09.26 07:08:11.5 --
+select id
+     , container_id
+	 , container_type
+	 , filename
+	 , disk_directory
+  from attachments
+;
+
+select id
+     , project_id
+  from news
+  ;
+
+-------------------------------------------------- 2018.09.26 07:08:11.712 --
+select id
+     , container_id
+	 , container_type
+	 , filename
+	 , disk_directory
+  from attachments
+;
+
+select id
+     , project_id
+  from news
+  ;
+
+-------------------------------------------------- 2018.09.26 07:08:13.199 --
+select id
+     , container_id
+	 , container_type
+	 , filename
+	 , disk_directory
+  from attachments
+;
+
+select id
+     , project_id
+  from news
+  ;
+
+-------------------------------------------------- 2018.09.26 07:09:28.692 --
+select id
+     , project_id
+  from news
+
+-------------------------------------------------- 2018.09.26 07:09:30.372 --
+select id
+     , container_id
+	 , container_type
+	 , filename
+	 , disk_directory
+  from attachments
+
+-------------------------------------------------- 2018.09.26 07:09:32.233 --
+select id
+     , project_id
+  from news
+
+-------------------------------------------------- 2018.09.26 07:09:33.927 --
+select id
+     , container_id
+	 , container_type
+	 , filename
+	 , disk_directory
+  from attachments
+
+-------------------------------------------------- 2018.09.26 07:09:35.936 --
+select id
+     , project_id
+  from news
+
+-------------------------------------------------- 2018.09.26 07:09:37.436 --
+select id
+     , project_id
+  from news
+
+-------------------------------------------------- 2018.09.26 07:09:38.462 --
+select id
+     , container_id
+	 , container_type
+	 , filename
+	 , disk_directory
+  from attachments
+
+-------------------------------------------------- 2018.09.26 07:10:53.667 --
+select id
+     , container_id
+	 , container_type
+	 , filename
+	 , disk_directory
+  from attachments
+
+-------------------------------------------------- 2018.09.26 07:10:55.422 --
+select id
+     , project_id
+  from news
+
+-------------------------------------------------- 2018.09.26 07:10:56.274 --
+select id
+     , project_id
+  from news
+
+-------------------------------------------------- 2018.09.26 07:10:57.477 --
+select id
+     , container_id
+	 , container_type
+	 , filename
+	 , disk_directory
+  from attachments
+
+-------------------------------------------------- 2018.09.26 07:10:58.400 --
+select id
+     , container_id
+	 , container_type
+	 , filename
+	 , disk_directory
+  from attachments
+
+-------------------------------------------------- 2018.09.26 07:10:59.577 --
+select id
+     , project_id
+  from news
+
+-------------------------------------------------- 2018.09.26 07:13:44.786 --
+select id
+     , container_id
+	 , container_type
+	 , filename
+	 , disk_directory
+  from attachments
+
+-------------------------------------------------- 2018.09.26 07:13:51.71 --
+select id
+     , project_id
+  from news
+
+-------------------------------------------------- 2018.09.26 07:13:58.421 --
+select id
+     , project_id
+  from news
+
+-------------------------------------------------- 2018.09.26 07:14:09.237 --
+show tables
+
+-------------------------------------------------- 2018.09.26 07:14:39.615 --
+select *
+  from new
+
+-------------------------------------------------- 2018.09.26 07:14:42.945 --
+select *
+  from news
+
+-------------------------------------------------- 2018.09.26 07:16:58.354 --
+nil
+
+-------------------------------------------------- 2018.09.26 07:17:11.965 --
+select *
+  from news
+
+-------------------------------------------------- 2018.09.26 07:17:13.405 --
+select *
+  from news
+
+-------------------------------------------------- 2018.09.26 07:17:14.302 --
+select *
+  from news
+
+-------------------------------------------------- 2018.09.26 07:17:15.279 --
+select *
+  from news
+
+-------------------------------------------------- 2018.09.26 07:18:23.503 --
+select id
+     , container_id
+	 , container_type
+	 , filename
+	 , disk_directory
+  from attachments
+
+-------------------------------------------------- 2018.09.26 07:19:18.483 --
+select id
+     , container_id
+	 , container_type
+	 , filename
+	 , disk_directory
+  from attachments
+
+-------------------------------------------------- 2018.09.26 07:19:31.48 --
+SELECT s.schema_owner, s.schema_name, t.table_name 
+FROM information_schema.schemata AS s,             
+     information_schema.tables AS t                
+WHERE t.table_schema = s.schema_name
+
+-------------------------------------------------- 2018.09.26 07:19:49.855 --
+nil
+
+-------------------------------------------------- 2018.09.26 07:20:14.693 --
+select id
+     , container_id
+	 , container_type
+	 , filename
+	 , disk_directory
+  from attachments
+
+-------------------------------------------------- 2018.09.26 07:52:47.942 --
+/
+
+-------------------------------------------------- 2018.09.26 07:52:50.12 --
+/
+
+-------------------------------------------------- 2018.09.26 07:52:53.37 --
+select *
+  from issues
+
+-------------------------------------------------- 2018.09.26 07:53:01.347 --
+select *
+  from issues
+
+-------------------------------------------------- 2018.09.26 07:53:03.423 --
+select *
+  from issues
+
+-------------------------------------------------- 2018.09.26 08:28:30.119 --
+select *
+  from issues
+
+-------------------------------------------------- 2018.09.26 08:29:04.173 --
+select *
+  from issues
+
+-------------------------------------------------- 2018.09.26 08:32:59.521 --
+select *
+  from issues
+
