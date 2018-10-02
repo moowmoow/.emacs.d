@@ -1,3 +1,4 @@
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -6,7 +7,7 @@
  '(cider-lein-parameters "repl :headless :host localhost")
  '(package-selected-packages
    (quote
-    (plantuml-mode ejc-sql session ido-vertical-mode edbi monokai-theme org-wiki jade-mode gradle-mode eyebrowse groovy-mode helm-descbinds meghanada xref-js2 wgrep undo-tree tern tern-auto-complete tern-context-coloring org-bullets stylus-mode js2-refactor js2-mode markdown-mode web-mode prodigy nodejs-repl neotree which-key iedit multi-term counsel-projectile company magit projectile counsel avy swiper))))
+	(plantuml-mode ejc-sql session ido-vertical-mode edbi monokai-theme org-wiki jade-mode gradle-mode eyebrowse groovy-mode helm-descbinds meghanada xref-js2 wgrep undo-tree tern tern-auto-complete tern-context-coloring org-bullets stylus-mode js2-refactor js2-mode markdown-mode web-mode prodigy nodejs-repl neotree which-key iedit multi-term counsel-projectile company magit projectile counsel avy swiper))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -22,13 +23,12 @@
 (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/"))
 (add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/"))
 
-;; lang and input setting
+;; lang and input setting 
 (set-language-environment "Korean")
 (setq default-input-method "korean-hangul390")
 (setq default-korean-keyboard "390")
 (global-set-key (kbd "<kana>") 'toggle-input-method)
 (global-set-key (kbd "<S-kana>") 'toggle-input-method)
-(global-set-key (kbd "C-S-SPC") 'toggle-input-method)
 
 (prefer-coding-system 'utf-8)
 
@@ -47,12 +47,11 @@
 
 ;; basic setting
 (setq frame-title-format
-      '((:eval (if (buffer-file-name)
-                (abbreviate-file-name (buffer-file-name))
-                 "%b"))))
+	  '((:eval (if (buffer-file-name)
+				   (abbreviate-file-name (buffer-file-name))
+				 "%b"))))
 
 (setq-default tab-width 4)
-(setq-default indent-tabs-mode nil)
 (global-hl-line-mode t)
 (global-linum-mode t)
 (column-number-mode t)
@@ -71,8 +70,8 @@
   "Find a recent file using ido."
   (interactive)
   (let ((file (ido-completing-read "Choose recent file: " recentf-list nil t)))
-    (when file
-      (find-file file))))
+	(when file
+	  (find-file file))))
 
 (global-set-key (kbd "C-c f") 'recentf-ido-find-file)
 
@@ -99,13 +98,13 @@
   "Kill the current buffer and deletes the file it is visiting."
   (interactive)
   (let ((filename (buffer-file-name)))
-    (when filename
-      (if (vc-backend filename)
-          (vc-delete-file filename)
-        (progn
-          (delete-file filename)
-          (message "deleted file %s" filename)
-          (kill-buffer))))))
+	(when filename
+	  (if (vc-backend filename)
+		  (vc-delete-file filename)
+		(progn
+		  (delete-file filename)
+		  (message "deleted file %s" filename)
+		  (kill-buffer))))))
 
 (global-set-key (kbd "C-c D") 'delete-file-and-buffer)
 
@@ -133,14 +132,14 @@
   "Rename the current buffer and file it is visiting."
   (interactive)
   (let ((filename (buffer-file-name)))
-    (if (not (and filename (file-exists-p filename)))
-        (message "Buffer is not visiting a file!")
-      (let ((new-name (read-file-name "New name: " filename)))
-        (cond
-         ((vc-backend filename) (vc-rename-file filename new-name))
-         (t
-          (rename-file filename new-name t)
-          (set-visited-file-name new-name t t)))))))
+	(if (not (and filename (file-exists-p filename)))
+		(message "Buffer is not visiting a file!")
+	  (let ((new-name (read-file-name "New name: " filename)))
+		(cond
+		 ((vc-backend filename) (vc-rename-file filename new-name))
+		 (t
+		  (rename-file filename new-name t)
+		  (set-visited-file-name new-name t t)))))))
 
 (global-set-key (kbd "C-c r") 'rename-file-and-buffer)
 
@@ -218,8 +217,7 @@ Repeated invocations toggle between the two most recently open buffers."
 (defalias 'w-hf #'org-wiki-helm-frame)
 (defalias 'w-hr #'org-wiki-helm-read-only)
 (defalias 'w-i #'org-wiki-index)
-(defalias 'w-in #'org-wiki-insert-new)
-(defalias 'w-il #'org-wiki-insert-link)
+(defalias 'w-in #'org-wiki-insert)
 (defalias 'w-ad #'org-wiki-asset-dired)
 (defalias 'og2h #'org-html-export-to-html)
 (defalias 'w-close #'org-wiki-close)
@@ -229,21 +227,21 @@ Repeated invocations toggle between the two most recently open buffers."
 
 ;; meghanada mode setting
 (add-hook 'java-mode-hook
-          (lambda ()
-            ;; meghanada-mode on
-            (meghanada-mode t)
-            (flycheck-mode +1)
-            (setq tab-width 4)
-            (setq c-basic-offset 4)
-            ;; use code format
-            (add-hook 'before-save-hook 'meghanada-code-beautify-before-save)))
+		  (lambda ()
+			;; meghanada-mode on
+			(meghanada-mode t)
+			(flycheck-mode +1)
+			(setq tab-width 4)
+			(setq c-basic-offset 4)
+			;; use code format
+			(add-hook 'before-save-hook 'meghanada-code-beautify-before-save)))
 
 (cond ((eq system-type 'windows-nt)
-       (setq meghanada-java-path (expand-file-name "bin/java.exe" (getenv "JAVA_HOME")))
-       (setq meghanada-maven-path "mvn.cmd"))
-      (t
-       (setq meghanada-java-path "java")
-       (setq meghanada-maven-path "mvn")))
+	   (setq meghanada-java-path (expand-file-name "bin/java.exe" (getenv "JAVA_HOME")))
+	   (setq meghanada-maven-path "mvn.cmd"))
+	  (t
+	   (setq meghanada-java-path "java")
+	   (setq meghanada-maven-path "mvn")))
 
 ;; helm-descbinds mode setting
 (global-set-key (kbd "C-h b") 'helm-descbinds)
@@ -254,9 +252,9 @@ Repeated invocations toggle between the two most recently open buffers."
 (add-hook 'js2-mode-hook (lambda () (auto-complete-mode)))
 (eval-after-load 'tern
   '(progn
-    (require 'tern-auto-complete)
-    (setq tern-ac-on-dot t)
-    (tern-ac-setup)))
+	(require 'tern-auto-complete)
+	(setq tern-ac-on-dot t)
+	(tern-ac-setup)))
 
 ;; org-mode setting
 ;;(setq org-src-fontify-natively t)
@@ -284,9 +282,9 @@ Repeated invocations toggle between the two most recently open buffers."
 (add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
 (add-to-list 'auto-mode-alist '("\\.uml\\'" . plantuml-mode))
 (add-hook 'org-babel-after-execute-hook
-          (lambda ()
-            (when org-inline-image-overlays
-              (org-redisplay-inline-images))))
+		  (lambda ()
+			(when org-inline-image-overlays
+			  (org-redisplay-inline-images))))
 
 ;; web-mode setting
 (setq web-mode-markup-indent-offset 2)
