@@ -6,7 +6,7 @@
  '(cider-lein-parameters "repl :headless :host localhost")
  '(package-selected-packages
    (quote
-    (plantuml-mode ejc-sql session ido-vertical-mode edbi monokai-theme org-wiki jade-mode gradle-mode eyebrowse groovy-mode helm-descbinds meghanada xref-js2 wgrep undo-tree tern tern-auto-complete tern-context-coloring org-bullets stylus-mode js2-refactor js2-mode markdown-mode web-mode prodigy nodejs-repl neotree which-key iedit multi-term counsel-projectile company magit projectile counsel avy swiper))))
+    (expand-region rainbow-mode discover-my-major highlight-symbol highlight-numbers paganini-theme flx-ido clean-aindent-mode duplicate-thing plantuml-mode ejc-sql session ido-vertical-mode edbi monokai-theme org-wiki jade-mode gradle-mode eyebrowse groovy-mode helm-descbinds meghanada xref-js2 wgrep undo-tree tern tern-auto-complete tern-context-coloring org-bullets stylus-mode js2-refactor js2-mode markdown-mode web-mode prodigy nodejs-repl neotree which-key iedit multi-term counsel-projectile company magit projectile counsel avy swiper))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -45,6 +45,10 @@
 (global-set-key (kbd "C-+") 'text-scale-increase)
 (global-set-key (kbd "C--") 'text-scale-decrease)
 
+;; program link
+;(setq find-program "d:\\tools\\cygwin64\\bin\\find.exe")
+;(setq grep-program "d:\\tools\\cygwin64\\bin\\grep.exe")
+
 ;; basic setting
 (setq frame-title-format
       '((:eval (if (buffer-file-name)
@@ -54,13 +58,20 @@
 (setq-default tab-width 4)
 (setq-default indent-tabs-mode nil)
 (global-hl-line-mode t)
-(global-linum-mode t)
+;;(global-linum-mode t)
+(add-hook 'prog-mode-hook 'linum-mode) ;; 프로그램 모드에서만 행번호 표시
+(add-hook 'prog-mode-hook (lambda () (interactive) (setq show-trailing-whitespace t)))
+(global-set-key (kbd "C-c w") 'whitespace-mode)
+(windmove-default-keybindings)
 (column-number-mode t)
 (delete-selection-mode t)
 (show-paren-mode t)
 (electric-pair-mode t)
-(setq large-file-warning-threshold 100000000)
 (defalias 'list-buffers 'ibuffer)
+
+;; file size 제한
+(setq large-file-warning-threshold 104857600)
+(setq gc-cons-threshold 104857600)
 
 ;; Recently Visited Files
 (setq recentf-max-saved-items 200)
@@ -77,21 +88,37 @@
 (global-set-key (kbd "C-c f") 'recentf-ido-find-file)
 
 ;;(desktop-save-mode t)
+(savehist-mode t)
+(add-to-list 'savehist-additional-variables 'kill-ring)
 
 (setq session-jump-undo-threshold 80)
 (global-set-key (kbd "C-c q") 'session-jump-to-last-change)
 
 ;; backup file setting
+(setq make-backup-file nil)
+(setq auto-save-default nil)
 (setq backup-directory-alist '(("." . "~/.emacs.d/tmp/backup"))
   backup-by-copying t    ; Don't delink hardlinks
   version-control t      ; Use version numbers on backups
   delete-old-versions t  ; Automatically delete excess backups
   kept-new-versions 20   ; how many of the newest versions to keep
   kept-old-versions 5    ; and how many of the old
-)
+  )
+
+;; dired
+(setq dired-dwim-target t) ;; 다른 dired buffer가 다른 윈도우에 표시되고 있다면 rename / copy를 위한 타켓으로 그 디렉토리를 사용
+(setq dired-recursive-copies 'alway)
+(setq dired-recursive-deletes 'top)
+(setq dired-listing-switches "-lha")
+
+(add-hook 'dired-mode-hook 'auto-revert-mode)
+(when (not (eq system-type 'windows-nt))
+  (setq dired-listing-switches "-lha --group-directories-first"))
 
 ;; theme setting
-(load-theme 'monokai t)
+;;(load-theme 'monokai t)
+(load-theme 'paganini t)
+(nyan-mode t)
 
 ;; custom function
 ;; Delete File and Buffer
@@ -125,8 +152,8 @@
   (forward-line -1)
   (indent-according-to-mode))
 
-;(global-set-key (kbd "C-M up") 'move-line-up)
-;(global-set-key (kbd "C-M down") 'move-line-down)
+(global-set-key (kbd "C-M-<up>") 'move-line-up)
+(global-set-key (kbd "C-M-<down>") 'move-line-down)
 
 ;; Rename File and Buffer
 (defun rename-file-and-buffer ()
@@ -161,10 +188,18 @@ Repeated invocations toggle between the two most recently open buffers."
 (global-set-key (kbd "M-g M-c") 'go-to-column)
 
 ;; projectile mode setting
+(projectile-mode t)
+(setq projectile-completion-system 'ivy)
 (counsel-projectile-mode t)
 
 ;; swiper mode setting
 (global-set-key (kbd "C-s") 'swiper)
+(global-set-key (kbd "C-r") 'swiper-all)
+
+;; ivy mode setting
+(ivy-mode t)
+(setq ivy-use-virtual-buffers t)
+(setq enable-recursive-minibuffers t)
 
 ;; ivy-based interface to standard commands
 (global-set-key (kbd "M-x") 'counsel-M-x)
@@ -289,6 +324,7 @@ Repeated invocations toggle between the two most recently open buffers."
               (org-redisplay-inline-images))))
 
 ;; web-mode setting
+;(setq web-mode-tag-auto-close-style 0)
 (setq web-mode-markup-indent-offset 2)
 (setq web-mode-css-indent-offset 2)
 (setq web-mode-code-indent-offset 2)
@@ -308,3 +344,135 @@ Repeated invocations toggle between the two most recently open buffers."
 (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
+
+;; magit setting
+(global-magit-file-mode t)
+
+;; golden-ratio setting
+(require 'golden-ratio)
+
+(add-to-list 'golden-ratio-exclude-modes "ediff-mode")
+(add-to-list 'golden-ratio-exclude-modes "helm-mode")
+(add-to-list 'golden-ratio-exclude-modes "dired-mode")
+(add-to-list 'golden-ratio-inhibit-functions 'pl/helm-alive-p)
+
+(defun pl/helm-alive-p ()
+  (if (boundp 'helm-alive-p)
+      (symbol-value 'helm-alive-p)))
+
+;; 다음 모드에서는 golden-raio를 활성화하지 않습니다.
+(setq golden-ratio-exclude-modes '("ediff-mode"
+                                   "gud-mode"
+                                   "gdb-locals-mode"
+                                   "gdb-registers-mode"
+                                   "gdb-breakpoints-mode"
+                                   "gdb-threads-mode"
+                                   "gdb-frames-mode"
+                                   "gdb-inferior-io-mode"
+                                   "gud-mode"
+                                   "gdb-inferior-io-mode"
+                                   "gdb-disassembly-mode"
+                                   "gdb-memory-mode"
+                                   "magit-log-mode"
+                                   "magit-reflog-mode"
+                                   "magit-status-mode"
+                                   "IELM"
+                                   "eshell-mode" "dired-mode"))
+
+(golden-ratio-mode)
+
+;;diff-mode에서 중요한 화이트스페이스 보이게 하기
+(add-hook 'diff-mode-hook (lambda ()
+                            (setq-local whitespace-style
+                                        '(face
+                                          tabs
+                                          tab-mark
+                                          spaces
+                                          space-mark
+                                          trailing
+                                          indentation::space
+                                          indentation::tab
+                                          newline
+                                          newline-mark))
+                            (whitespace-mode 1)))
+
+;; duplicate-thing setting
+(global-set-key (kbd "C-S-c") 'duplicate-thing)
+
+;; volatile-highlights-mode
+(volatile-highlights-mode t)
+
+;; clean aindent
+(add-hook 'prog-mode-hook 'clean-aindent-mode)
+
+;; yasnippet setting
+(yas-global-mode 1)
+
+;; global-auto-revert-mode
+(global-auto-revert-mode)
+
+;; hippie-expand는 dabbrev-expand의 더 나은 버전입니다.
+;; dabbrev-expand는 현재 버퍼들 그리고 다른 버퍼들에, 이미 입력한 단어들에 대해 검색하는데
+;; hippie-expand는 파일이름, kill ring과 같은 더 많은 소스를 포함합니다.
+(global-set-key (kbd "M-/") 'hippie-expand) ;;dabbrev-expand를 바꿈.
+(setq
+ hippie-expand-try-functions-list
+ '(try-expand-dabbrev ;; 현재 버퍼를 검색하는데, “동적으로” 단어 확장.
+   Try-expand-dabbrev-all-buffers ;; 모든 다른 버퍼를 검색하는데 “동적으로” 단어를 확장.
+   try-expand-dabbrev-from-kill ;; kill ring을 검색하는데, “동적으로” 단어를 확장.
+   try-complete-file-name-partially ;; 고유한 문자 수 만큼, 파일이름으로 텍스트를 완성.
+   try-complete-file-name ;; 파일이름으로 텍스트를 완성.
+   try-expand-all-abbrevs ;; 모든 abbrev 테이블에 따라 point 전에 단어를 확장함.
+   try-expand-list ;; 현재 리스트를 버퍼에 전체 행으로 완성함.
+   try-expand-line ;; 현재 행을 버퍼에 전체 행으로 완성함.
+   try-complete-lisp-symbol-partially ;; 고유한 문자 수 만큼, Emacs Lisp symbol로써 완성.
+   try-complete-lisp-symbol) ;; Emacs Lisp symbol로써 단어를 완성함.
+ )
+
+(setq ibuffer-use-other-window t)
+
+;; go-to-address-mode
+(add-hook 'prog-mode-hook 'goto-address-mode)
+(add-hook 'text-mode-hook 'goto-address-mode)
+
+(if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+(if (fboundp 'tool-bar-mode) (scroll-bar-mode -1))
+(if (fboundp 'menu-bar-mode) (scroll-bar-mode -1))
+
+(blink-cursor-mode -1)
+(setq scroll-margin 0
+      scroll-conservatively 100000
+      scroll-preserve-screen-position 1)
+
+;; highlight-number
+(add-hook 'prog-mode-hook 'highligh-numbers-mode)
+
+;; highligh-symbol
+(highlight-symbol-nav-mode)
+
+(add-hook 'prog-mode-hook (lambda () (highlight-symbol-mode)))
+(add-hook 'org-mode-hook (lambda () (highlight-symbol-mode)))
+
+(setq highlight-symbol-idle-delay 0.2
+      highlight-symbol-on-navigation-p t)
+
+(global-set-key [(control shift mouse-1)]
+                (lambda (event)
+                  (interactive "e")
+                  (goto-char (posn-point (event-start event)))
+                  (highlight-symbol-at-point)))
+
+(global-set-key (kbd "M-n") 'highlight-symbol-next)
+(global-set-key (kbd "M-p") 'highlight-symbol-prev)
+
+;; discover-my-major
+(global-unset-key (kbd "C-h h")) ; hello world 단축키 취소
+(define-key 'help-command (kbd "h m") 'discover-my-major)
+
+;; rainbow-mode
+(add-hook 'html-mode-hook 'rainbow-mode)
+(add-hook 'css-mode-hook 'rainbow-mode)
+
+;; expand-region
+(global-set-key (kbd "C-&") 'er/expand-region)
+(global-set-key (kbd "C-M-&") 'er/contract-region)
