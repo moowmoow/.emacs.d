@@ -36,6 +36,13 @@
                             (whitespace-mode 1)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; PACKAGE : duplicate-thing
+;;
+;; SITE    : https://github.com/ongaeshi/duplicate-thing
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(global-set-key (kbd "C-S-c") 'duplicate-thing)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; PACKAGE : electric-pair-mode
 ;;
 ;; GROUP   : Editing > Matching > Paren Matching > Paren Showing
@@ -56,6 +63,7 @@
 ;; PACKAGE : clean-aindent-mode
 ;;
 ;; GROUP   : Editing > Indent > Clean Aindent
+;; SITE    : https://github.com/pmarinov/clean-aindent-mode
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (add-hook 'prog-mode-hook 'clean-aindent-mode)
@@ -65,9 +73,25 @@
 ;; PACKAGE : volatile-highlights-mode
 ;;
 ;; GROUP   : Editing > Volatile Highlights
+;; SITE    : http://www.emacswiki.org/emacs/VolatileHighlights
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (volatile-highlights-mode t)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; PACKAGE : smartparens
+;;
+;; GROUP   : Editing > Smartparens
+;; SITE    : https://github.com/Fuco1/smartparens
+;;           https://github.com/Fuco1/smartparens/wiki
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(require 'smartparens-config)
+(setq sp-base-key-bindings 'paredit)
+(setq sp-autoskip-closing-pair 'always)
+(setq sp-hybrid-kill-entrie-symbol nil)
+(sp-use-paredit-bindings)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -81,7 +105,7 @@
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; PACKAGE : swiper
+;; PACKAGE : iedit
 ;;
 ;; GROUP   : Editing
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -93,6 +117,16 @@
 ;; PACKAGE : Yasnippet
 ;;
 ;; GROUP   : Editing > Yasnippet
+;; SITE    : https://github.com/capitaomorte/yasnippet
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (yas-global-mode 1)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; PACKAGE : undo-tree
+;;
+;; GROUP   : Editing > Undo > Undo Tree
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(global-undo-tree-mode)
