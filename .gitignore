@@ -1,8 +1,8 @@
 tmp/*
 elpa/archives/
-elpa/ejc-sql-20180827.1408/.nrepl-port
-elpa/ejc-sql-20180827.1408/target/
-elpa/ejc-sql-20180827.1408/ejc-sql/
+elpa/ejc-sql-*/.nrepl-port
+elpa/ejc-sql-*/target/
+elpa/ejc-sql-*/ejc-sql/
 
 .edbi-ds-history
 ac-comphist.dat
@@ -10,3 +10,5 @@ auto-save-list/
 projectile-bookmarks.eld
 recentf
 history
+
+site/*

@@ -1,0 +1,6 @@
+(global-set-key (kbd "C-c D") 'delete-file-and-buffer)
+(global-set-key (kbd "C-M-<up>") 'move-line-up)
+(global-set-key (kbd "C-M-<down>") 'move-line-down)
+(global-set-key (kbd "C-c b") 'switch-to-previous-buffer)
+(global-set-key (kbd "C-c r") 'rename-file-and-buffer)
+(global-set-key (kbd "M-g M-c") 'go-to-column)
