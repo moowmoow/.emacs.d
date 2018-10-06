@@ -6,7 +6,7 @@
  '(cider-lein-parameters "repl :headless :host localhost")
  '(package-selected-packages
    (quote
-    (expand-region rainbow-mode discover-my-major highlight-symbol highlight-numbers paganini-theme flx-ido clean-aindent-mode duplicate-thing plantuml-mode ejc-sql session ido-vertical-mode edbi monokai-theme org-wiki jade-mode gradle-mode eyebrowse groovy-mode helm-descbinds meghanada xref-js2 wgrep undo-tree tern tern-auto-complete tern-context-coloring org-bullets stylus-mode js2-refactor js2-mode markdown-mode web-mode prodigy nodejs-repl neotree which-key iedit multi-term counsel-projectile company magit projectile counsel avy swiper))))
+    (dap-mode lsp-ui company-lsp use-package lsp-java expand-region rainbow-mode discover-my-major highlight-symbol highlight-numbers paganini-theme flx-ido clean-aindent-mode duplicate-thing plantuml-mode ejc-sql session ido-vertical-mode edbi monokai-theme org-wiki jade-mode gradle-mode eyebrowse groovy-mode helm-descbinds meghanada xref-js2 wgrep undo-tree tern tern-auto-complete tern-context-coloring org-bullets stylus-mode js2-refactor js2-mode markdown-mode web-mode prodigy nodejs-repl neotree which-key iedit multi-term counsel-projectile company magit projectile counsel avy swiper))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -189,6 +189,8 @@ Repeated invocations toggle between the two most recently open buffers."
 
 ;; projectile mode setting
 (projectile-mode t)
+(define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
+(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 (setq projectile-completion-system 'ivy)
 (counsel-projectile-mode t)
 
@@ -279,6 +281,12 @@ Repeated invocations toggle between the two most recently open buffers."
       (t
        (setq meghanada-java-path "java")
        (setq meghanada-maven-path "mvn")))
+
+(global-set-key (kbd "C-c C-t r") 'meghanada-reference)
+(global-set-key (kbd "C-c C-t i") 'meghanada-typeinfo)
+(global-set-key (kbd "C-c C-c m") 'meghanada-exec-main)
+(global-set-key (kbd "C-c C-v s") 'meghanada-jump-symbol)
+
 
 ;; helm-descbinds mode setting
 (global-set-key (kbd "C-h b") 'helm-descbinds)
@@ -445,7 +453,7 @@ Repeated invocations toggle between the two most recently open buffers."
       scroll-preserve-screen-position 1)
 
 ;; highlight-number
-(add-hook 'prog-mode-hook 'highligh-numbers-mode)
+(add-hook 'prog-mode-hook (lambda () (highlight-numbers-mode)))
 
 ;; highligh-symbol
 (highlight-symbol-nav-mode)
@@ -476,3 +484,8 @@ Repeated invocations toggle between the two most recently open buffers."
 ;; expand-region
 (global-set-key (kbd "C-&") 'er/expand-region)
 (global-set-key (kbd "C-M-&") 'er/contract-region)
+
+;; multi-term
+(global-set-key (kbd "C-c C-m o") 'multi-term)
+(add-hook 'term-mode-hook (lambda () (global-set-key (kbd "C-c C-m >") 'multi-term-next)))
+(add-hook 'term-mode-hook (lambda () (global-set-key (kbd "C-c C-m <") 'multi-term-prev)))
