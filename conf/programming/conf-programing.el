@@ -14,14 +14,14 @@
 ;; GROUP   : Programming > Tools > Magit
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(require 'magit)
-(set-default 'magit-stage-all-confirm nil)
+;;(require 'magit)
+;;(set-default 'magit-stage-all-confirm nil)
 (add-hook 'magit-mode-hook 'magit-load-config-extensions)
 
-(defadvice magit-status (around magit-fullscreen activate)
-  (window-configuration-to-register :magit-fullscreen)
-  ad-do-it
-  (delete-other-windows))
+;; (defadvice magit-status (around magit-fullscreen activate)
+;;   (window-configuration-to-register :magit-fullscreen)
+;;   ad-do-it
+;;   (delete-other-windows))
 
 (global-unset-key (kbd "C-x g"))
 (global-set-key (kbd "C-x g h") 'magit-log)

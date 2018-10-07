@@ -56,4 +56,41 @@ Repeated invocations toggle between the two most recently open buffers."
   (interactive "ncolumn: ")
   (move-to-column column t))
 
+;; 반투명
+(defun opaque-frame ()
+  (set-frame-parameter nil 'alpha '(100 100))
+  (set-foreground-color "ghost white")
+  (set-background-color "black")
+)
 
+(defun transparent-frame()
+  (set-frame-parameter nil 'alpha '(70 60))
+  (set-foreground-color "black")
+  (set-background-color "ghost white")
+)
+
+(defun toggle-transparency ()
+   (interactive)
+   (if (/=
+        (cadr (find 'alpha (frame-parameters nil) :key #'car))
+        100)
+       (opaque-frame)
+       ;(set-frame-parameter nil 'alpha '(100 100))
+     ;(set-frame-parameter nil 'alpha '(85 60))
+     (transparent-frame)
+      ;(set-foreground-color . "black")
+      ;(set-foreground-color . "white"))
+     ))
+
+;; 모든 버퍼 삭제
+(defun close-all-buffers () 
+  (interactive) 
+  (mapc 'kill-buffer (buffer-list)))
+
+;; 현재 버퍼를 제외한 모든 버퍼 삭제
+(defun only-one-buffer () 
+  (interactive) 
+  (let ((current-buffer (current-buffer))) 
+    (dolist (buffer (buffer-list)) 
+      (unless (eql current-buffer buffer) 
+        (kill-buffer buffer))))) 

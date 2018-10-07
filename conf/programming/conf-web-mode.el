@@ -21,6 +21,7 @@
 ;;(add-to-list 'web-mode-indentation-params '"lineup-concats" . nil))
 ;;(add-to-list 'web-mode-indentation-params '"lineup-ternary" . nil))
 
+(add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))

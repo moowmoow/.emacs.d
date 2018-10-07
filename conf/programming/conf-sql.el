@@ -2,6 +2,7 @@
 ;; PACKAGE : ejc-sql
 ;;
 ;; GROUP   : ejc sql
+;; SITE    : https://github.com/kostafey/ejc-sql
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (require 'ejc-sql)

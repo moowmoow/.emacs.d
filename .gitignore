@@ -12,3 +12,7 @@ recentf
 history
 
 site/*
+lsp-java/*
+projectile.cache
+tramp
+workspace/*
