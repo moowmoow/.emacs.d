@@ -25,3 +25,12 @@
 
 ;;(global-magit-file-mode t)
 (add-hook 'magit-mode-hook 'magit-svn-mode)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; PACKAGE : restclient
+;;
+;; GROUP   : Programming > Tools > Magit
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(add-to-list 'auto-mode-alist '("\\.http\\'" . restclient-mode))

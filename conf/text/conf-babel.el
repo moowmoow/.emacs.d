@@ -10,4 +10,5 @@
    '(
      (ruby . t)
      (plantuml . t)
+     (restclient . t)
      )))
