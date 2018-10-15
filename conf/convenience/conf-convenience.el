@@ -1,3 +1,7 @@
+;; 라인 wrapping 설정
+(add-hook 'prog-mode-hook 'toggle-truncate-lines nil)
+(add-hook 'prog-mode-hook 'visual-line-mode nil)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; GROUP: Convenience > Revert
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -116,7 +120,7 @@
 ;; SITE    : https://github.com/iquiw/company-restclient
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(add-hook 'after-init-hook 'global-company-mode)
+;;(add-hook 'after-init-hook 'global-company-mode)
 ;;(global-set-key "\t" 'company-complete-common)
 ;;(global-set-key (kbd "C-<tab>") 'company-complete-common)
 
