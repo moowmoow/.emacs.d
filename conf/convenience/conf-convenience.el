@@ -116,7 +116,9 @@
 ;; SITE    : https://github.com/iquiw/company-restclient
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(global-company-mode)
+(add-hook 'after-init-hook 'global-company-mode)
+;;(global-set-key "\t" 'company-complete-common)
+;;(global-set-key (kbd "C-<tab>") 'company-complete-common)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

@@ -19,3 +19,10 @@
 
 ;;
 (counsel-projectile-mode t)
+
+;; 캐싱 활성화
+(setq projectile-enable-caching t)
+
+;; 인덱싱 방식 설정
+(setq projectile-indexing-method 'turbo-alien)
+(setq projectile-generic-command "fd -H --ignore-file .projectile -t f -0")

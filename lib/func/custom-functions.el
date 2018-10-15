@@ -82,6 +82,12 @@ Repeated invocations toggle between the two most recently open buffers."
       ;(set-foreground-color . "white"))
      ))
 
+(defun transparent(alpha-level no-focus-alpha-level)
+"Let's you make the window transparent"
+(interactive "nAlpha level (0-100): \nnNo focus alpha level (0-100): ")
+(set-frame-parameter (selected-frame) 'alpha (list alpha-level no-focus-alpha-level))
+(add-to-list 'default-frame-alist `(alpha ,alpha-level)))
+
 ;; 모든 버퍼 삭제
 (defun close-all-buffers () 
   (interactive) 
