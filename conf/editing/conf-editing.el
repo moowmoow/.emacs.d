@@ -139,3 +139,4 @@
 
 ;; (global-undo-tree-mode)
 (add-hook 'prog-mode-hook #'undo-tree-mode)
+(add-hook 'text-mode-hook #'undo-tree-mode)
