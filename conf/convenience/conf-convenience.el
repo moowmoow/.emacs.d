@@ -124,6 +124,13 @@
 ;;(global-set-key "\t" 'company-complete-common)
 ;;(global-set-key (kbd "C-<tab>") 'company-complete-common)
 
+;; (add-hook 'ielm-mode-hook 'company-mode)
+(add-hook 'ielm-mode-hook 'company-mode)
+(add-hook 'ielm-mode-hook (lambda () (push 'company-elisp company-backends)))
+(add-hook 'lisp-interaction-mode-hook 'company-mode)
+(add-hook 'lisp-interaction-mode-hook (lambda () (push 'company-elisp company-backends)))
+(add-hook 'emacs-lisp-mode-hook 'company-mode)
+(add-hook 'emacs-lisp-mode-hook (lambda () (push 'company-elisp company-backends)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; PACKAGE : company-restclient
