@@ -1,1 +1,5 @@
-elpa
+/elpa
+/url
+/eclipse.jdt.ls
+
+*.jar
