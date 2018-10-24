@@ -1,5 +1,5 @@
 (defalias 'perl-mode 'cperl-mode)
-(add-to-list 'auto-mode-alist '("\\.\\([pP][L]m]\\||psgi\\|t\\)\\'" . cperl-mode))
+(add-to-list 'auto-mode-alist '("\\.\\([pP][L|m]\\||psgi\\|t\\)\\'" . cperl-mode))
 
 (eval-after-load "cperl-mode"
   '(progn
