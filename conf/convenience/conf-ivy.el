@@ -27,3 +27,11 @@
 
 ;; Ivy-resume and other commands
 (global-set-key (kbd "C-c C-r") 'ivy-resume)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; PACKAGE : ivy-yasnippet
+;;
+;; GROUP   : Convenience > Ivy-yasnippet
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(global-set-key (kbd "C-h C-y") 'ivy-yasnippet)
+(setq ivy-yasnippet-expand-keys "always")
