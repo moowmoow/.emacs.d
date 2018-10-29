@@ -5,12 +5,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (require 'org-wiki)
-(setq org-wiki-location-list
-      '(
-        "/mnt/document/org-wiki/it"
-        "/mnt/document/org-wiki/project"
-        ))
-(setq org-wiki-location (car org-wiki-location-list))
 
 (defalias 'w-h #'org-wiki-helm)
 (defalias 'w-s #'org-wiki-switch)

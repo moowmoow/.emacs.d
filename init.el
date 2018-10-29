@@ -3,9 +3,10 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(org-agenda-files (quote ("/work/test2.org" "/work/test.org")))
  '(package-selected-packages
    (quote
-    (google-translate ivy-yasnippet yasnippet-snippets company-php company-web emmet-mode helm-perldoc elpy ob-restclient company-restclient restclient magit-svn rainbow-blocks rainbow-delimiters rainbow-identifiers zenburn-theme spacemacs-theme moe-theme powerline diff-hl vlf ztree recentf-ext ibuffer-vc smartparens dap-mode lsp-ui company-lsp use-package lsp-java expand-region rainbow-mode discover-my-major highlight-symbol highlight-numbers paganini-theme flx-ido clean-aindent-mode duplicate-thing plantuml-mode ejc-sql session ido-vertical-mode edbi monokai-theme org-wiki jade-mode gradle-mode eyebrowse groovy-mode helm-descbinds meghanada xref-js2 wgrep undo-tree tern tern-auto-complete tern-context-coloring org-bullets stylus-mode js2-refactor js2-mode markdown-mode web-mode prodigy nodejs-repl neotree which-key iedit multi-term counsel-projectile company magit projectile counsel avy swiper))))
+    (org-download google-translate ivy-yasnippet yasnippet-snippets company-php company-web emmet-mode helm-perldoc elpy ob-restclient company-restclient restclient magit-svn rainbow-blocks rainbow-delimiters rainbow-identifiers zenburn-theme spacemacs-theme moe-theme powerline diff-hl vlf ztree recentf-ext ibuffer-vc smartparens dap-mode lsp-ui company-lsp use-package lsp-java expand-region rainbow-mode discover-my-major highlight-symbol highlight-numbers paganini-theme flx-ido clean-aindent-mode duplicate-thing plantuml-mode ejc-sql session ido-vertical-mode edbi monokai-theme org-wiki jade-mode gradle-mode eyebrowse groovy-mode helm-descbinds meghanada xref-js2 wgrep undo-tree tern tern-auto-complete tern-context-coloring org-bullets stylus-mode js2-refactor js2-mode markdown-mode web-mode prodigy nodejs-repl neotree which-key iedit multi-term counsel-projectile company magit projectile counsel avy swiper))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

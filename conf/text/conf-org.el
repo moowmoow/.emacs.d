@@ -18,6 +18,12 @@
   '((t (:overline "#A7A6AA" :foreground "#008ED1" :background "#EAEAFF")))
   "Face used for the line delimiting the end of source blocks.")
 
+(setq org-todo-keywords
+      '((sequencep "TODO(t)" "|" "DONE(d)")
+        (sequencep "REPORT(r)" "BUG(b)" "KNOWNCAUSE(k)" "|" "FIXED(f)")))
+
+(global-set-key (kbd "C-c a") 'org-agenda)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; PACKAGE : org-bullets
 ;;
