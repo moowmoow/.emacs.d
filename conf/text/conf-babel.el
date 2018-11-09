@@ -11,4 +11,5 @@
      (ruby . t)
      (plantuml . t)
      (restclient . t)
+     (perl . t)
      )))

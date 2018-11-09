@@ -100,3 +100,19 @@ Repeated invocations toggle between the two most recently open buffers."
     (dolist (buffer (buffer-list)) 
       (unless (eql current-buffer buffer) 
         (kill-buffer buffer))))) 
+
+;; (defun remove-html-attribute ()
+;;   "HTML Attribute Remove"
+;;   (replace-regexp ""\(.*?\)"" ""))
+
+(defun eval-region-or-buffer ()
+  (interactive)
+  (let ((debug-on-error t))
+    (cond
+     (mark-active
+      (call-interactively 'eval-region)
+      (message "Region evaluated!")
+      (setq deactivate-mark t))
+     (t
+      (eval-buffer)
+      (message "Buffer evaluated!")))))
