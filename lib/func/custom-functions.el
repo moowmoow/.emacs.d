@@ -89,17 +89,17 @@ Repeated invocations toggle between the two most recently open buffers."
 (add-to-list 'default-frame-alist `(alpha ,alpha-level)))
 
 ;; 모든 버퍼 삭제
-(defun close-all-buffers () 
-  (interactive) 
+(defun close-all-buffers ()
+  (interactive)
   (mapc 'kill-buffer (buffer-list)))
 
 ;; 현재 버퍼를 제외한 모든 버퍼 삭제
-(defun only-one-buffer () 
-  (interactive) 
-  (let ((current-buffer (current-buffer))) 
-    (dolist (buffer (buffer-list)) 
-      (unless (eql current-buffer buffer) 
-        (kill-buffer buffer))))) 
+(defun only-one-buffer ()
+  (interactive)
+  (let ((current-buffer (current-buffer)))
+    (dolist (buffer (buffer-list))
+      (unless (eql current-buffer buffer)
+        (kill-buffer buffer)))))
 
 ;; (defun remove-html-attribute ()
 ;;   "HTML Attribute Remove"
@@ -116,3 +116,26 @@ Repeated invocations toggle between the two most recently open buffers."
      (t
       (eval-buffer)
       (message "Buffer evaluated!")))))
+
+;; Completing point by some yasnippet key
+(defun yas-ido-expand ()
+  "Lets you select (and expand) a yasnippet key"
+  (interactive)
+    (let ((original-point (point)))
+      (while (and
+              (not (= (point) (point-min) ))
+              (not
+               (string-match "[[:space:]\n]" (char-to-string (char-before)))))
+        (backward-word 1))
+    (let* ((init-word (point))
+           (word (buffer-substring init-word original-point))
+           (list (yas-active-keys)))
+      (goto-char original-point)
+      (let ((key (remove-if-not
+                  (lambda (s) (string-match (concat "^" word) s)) list)))
+        (if (= (length key) 1)
+            (setq key (pop key))
+          (setq key (ido-completing-read "key: " list nil nil word)))
+        (delete-char (- init-word original-point))
+        (insert key)
+        (yas-expand)))))
