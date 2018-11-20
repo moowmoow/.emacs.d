@@ -1,0 +1,37 @@
+# key: ora-cols
+# name: ora-cols
+# --
+SELECT UTC.COLUMN_ID
+     , UTC.COLUMN_NAME
+     , UCC.COMMENTS
+     , UTC.DATA_TYPE
+     , UTC.DATA_LENGTH
+     , UTC.DATA_PRECISION
+     , UTC.DATA_SCALE
+     , UPK.INDEX_NAME      AS PRIMARY_KEY
+     , UPK.COLUMN_POSITION AS PRIMARY_INDEX
+     , UTC.NULLABLE
+     , UTC.DATA_DEFAULT
+     , UTC.CHAR_LENGTH
+  FROM USER_TABLES UT
+       LEFT JOIN USER_TAB_COLS UTC
+              ON UTC.TABLE_NAME = UT.TABLE_NAME
+       LEFT JOIN USER_COL_COMMENTS UCC
+              ON UCC.TABLE_NAME = UTC.TABLE_NAME
+             AND UCC.COLUMN_NAME = UTC.COLUMN_NAME
+       LEFT OUTER JOIN (
+                        SELECT UIC.INDEX_NAME
+                             , UIC.TABLE_NAME
+                             , UIC.COLUMN_NAME
+                             , UIC.COLUMN_POSITION
+                             , UIC.DESCEND
+                          FROM USER_CONSTRAINTS UC
+                             , USER_IND_COLUMNS UIC
+                         WHERE UC.CONSTRAINT_NAME = UIC.INDEX_NAME
+                           AND UC.CONSTRAINT_TYPE = 'P'
+                       ) UPK
+                    ON UPK.TABLE_NAME = UTC.TABLE_NAME
+                   AND UPK.COLUMN_NAME = UTC.COLUMN_NAME
+ WHERE UPPER(UT.TABLE_NAME) = UPPER('$1')
+ ORDER BY UTC.COLUMN_ID ASC
+;$0
