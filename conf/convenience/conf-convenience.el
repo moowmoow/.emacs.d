@@ -1,6 +1,6 @@
 ;; 라인 wrapping 설정
-(add-hook 'prog-mode-hook 'toggle-truncate-lines nil)
-(add-hook 'prog-mode-hook 'visual-line-mode nil)
+(add-hook 'web-mode-hook 'toggle-truncate-lines nil)
+(add-hook 'web-mode-hook 'visual-line-mode nil)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; GROUP: Convenience > Revert
