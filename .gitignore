@@ -4,6 +4,10 @@ elpa/ejc-sql-*/.nrepl-port
 elpa/ejc-sql-*/target/
 elpa/ejc-sql-*/ejc-sql/
 
+eclipse.jdt.ls/server/config_linux
+eclipse.jdt.ls/server/config_mac
+eclipse.jdt.ls/server/config_win
+
 .edbi-ds-history
 ac-comphist.dat
 auto-save-list/

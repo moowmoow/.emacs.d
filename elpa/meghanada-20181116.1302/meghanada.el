@@ -507,8 +507,9 @@ function."
     (if (file-exists-p jar)
         (let ((process-connection-type nil)
               (process-adaptive-read-buffering nil)
-              (cmd (format "%s %s %s -Dfile.encoding=UTF-8 -jar %s -p %d %s"
+              (cmd (format "%s %s %s %s -Dfile.encoding=UTF-8 -jar %s -p %d %s"
                            (shell-quote-argument meghanada-java-path)
+                           "-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Djava.rmi.server.hostname=127.0.0.1 -Dcom.sun.management.jmxremote.ssl=false"
                            (meghanada--server-options)
                            meghanada-server-jvm-option
                            (shell-quote-argument jar)
