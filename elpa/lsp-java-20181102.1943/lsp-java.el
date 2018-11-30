@@ -81,7 +81,8 @@ The slash is expected at the end."
   :type 'function
   :group 'lsp-java)
 
-(defcustom lsp-java-vmargs '("-noverify" "-Xmx1G" "-XX:+UseG1GC" "-XX:+UseStringDeduplication")
+;; (defcustom lsp-java-vmargs '("-noverify" "-Xmx1G" "-XX:+UseG1GC" "-XX:+UseStringDeduplication")
+(defcustom lsp-java-vmargs '("-noverify" "-Xmx1G" "-XX:+UseG1GC")
   "Specifies extra VM arguments used to launch the Java Language Server.
 
 Eg. use `-noverify -Xmx1G -XX:+UseG1GC
@@ -342,7 +343,7 @@ FULL specify whether full or incremental build will be performed."
   (unless (file-directory-p path)
     (make-directory path t)))
 
-(defun lsp-java--get-java-version ()
+(defun lsp-java--get-java-version ()y
   "Retrieve the java version from shell command."
   (let* ((java-version-output (shell-command-to-string (concat lsp-java-java-path " -version")))
          (version-string (nth 2 (split-string java-version-output))))

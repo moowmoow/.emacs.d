@@ -3,6 +3,7 @@
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
 (set-language-environment "UTF-8")
+(set-file-name-coding-system 'cp949-dos)
 
 ;;(set-language-environment "Korean")
 (setq default-input-method "korean-hangul390")

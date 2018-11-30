@@ -1,3 +1,10 @@
+;; Make sure that the bash executable can be found
+;; (setq explicit-shell-file-name "C:/tools/cygwin64/bin/bash.exe")
+(setq explicit-shell-file-name "C:/emacs/base/emacs-26.1-x86_64/libexec/emacs/26.1/x86_64-w64-mingw32/cmdproxy.exe")
+;; (setq explicit-shell-file-name "C:/WINDOWS/system32/cmdproxy.exe")
+(setq shell-file-name explicit-shell-file-name)
+(add-to-list 'exec-path "C:/tools/cygwin64/bin")
+(add-to-list 'exec-path "C:/emacs/tools/cvs")
 
 ;; multi-term
 (global-set-key (kbd "C-c C-m t") 'multi-term)

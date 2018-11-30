@@ -12,4 +12,5 @@
      (plantuml . t)
      (restclient . t)
      (perl . t)
-     )))
+     ))
+  )
